@@ -1,7 +1,8 @@
 #!/bin/bash
 
-echo "Installing dependences.."
-sudo apt-get install screen build-essential automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 1>/dev/null 2>/dev/null || install=false
+sudo apt-get update
+
+sudo apt-get install screen build-essential automake autoconf pkg-config zlib1g libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 1>/dev/null 2>/dev/null || install=false
 if [ "$install" = false ]
 then
 exit 1
