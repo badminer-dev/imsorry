@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo apt-get update
+apt-get update
 
-sudo apt-get install screen build-essential automake autoconf pkg-config zlib1g libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++ -y 1>/dev/null 2>/dev/null || install=false
+apt-get install automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev zlib1g-dev make g++
 if [ "$install" = false ]
 then
 exit 1
@@ -13,13 +13,7 @@ mkdir $MINERPATH 1>/dev/null 2>/dev/null
 
 git clone https://github.com/tpruvot/cpuminer-multi.git $MINERPATH > /dev/null
 
-cd $MINERPATH && ./autogen.sh
-cd $MINERPATH && ./configure --with-crypto --with-curl CFLAGS="-march=native" || configure=false
-cd $MINERPATH && make || compile=false
-if [ "$configure" = false ]
-then
-exit 1
-fi
+cd $MINERPATH && ./build.sh || compile=false
 
 if [ "$compile" = false ]
 then
