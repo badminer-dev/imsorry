@@ -2,7 +2,12 @@
 
 sudo apt-get update
 
-sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y
+sudo apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y 1>/dev/null 2>/dev/null || install=false
+if [ "$install" = false ]
+then
+exit 1
+fi
+
 git clone https://github.com/xmrig/xmrig.git
 mkdir xmrig/build && cd xmrig/build
 cmake ..
